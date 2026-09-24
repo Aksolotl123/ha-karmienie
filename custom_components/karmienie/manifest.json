@@ -1,0 +1,11 @@
+{
+  "domain": "karmienie",
+  "name": "Karmienie Dziecka",
+  "codeowners": [],
+  "config_flow": true,
+  "documentation": "https://github.com/Aksolotl123/ha-karmienie",
+  "integration_type": "service",
+  "iot_class": "cloud_push",
+  "requirements": [],
+  "version": "0.1.0"
+}

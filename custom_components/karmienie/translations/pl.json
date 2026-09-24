@@ -1,0 +1,78 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Karmienie Dziecka",
+        "description": "Zaloguj się osobnym kontem Firebase utworzonym dla Home Assistant (e-mail/hasło). Konto musi mieć w bazie users/{uid}: allowed = true i appVersion ≥ minVersionCode.",
+        "data": {
+          "email": "E-mail",
+          "password": "Hasło",
+          "database_url": "Adres Realtime Database",
+          "api_key": "Klucz Web API Firebase"
+        }
+      },
+      "reauth_confirm": {
+        "title": "Ponowne logowanie",
+        "description": "Firebase odrzucił logowanie konta {email}. Podaj aktualne hasło.",
+        "data": {
+          "password": "Hasło"
+        }
+      }
+    },
+    "error": {
+      "invalid_auth": "Nieprawidłowy e-mail lub hasło (albo logowanie e-mail/hasło jest wyłączone w Firebase).",
+      "no_access": "Zalogowano, ale reguły bazy odmówiły dostępu do /feedings. Ustaw users/{uid}/allowed = true i appVersion.",
+      "cannot_connect": "Nie można połączyć się z Firebase."
+    },
+    "abort": {
+      "already_configured": "To konto jest już skonfigurowane.",
+      "reauth_successful": "Zalogowano ponownie."
+    }
+  },
+  "options": {
+    "step": {
+      "init": {
+        "title": "Ustawienia",
+        "data": {
+          "threshold_hours": "Po ilu godzinach od karmienia sygnalizować"
+        }
+      }
+    }
+  },
+  "entity": {
+    "binary_sensor": {
+      "feeding_due": {
+        "name": "Trzeba nakarmić"
+      },
+      "connection": {
+        "name": "Połączenie z Firebase"
+      }
+    },
+    "sensor": {
+      "last_feeding": {
+        "name": "Ostatnie karmienie"
+      },
+      "next_feeding": {
+        "name": "Następne karmienie"
+      },
+      "minutes_since_feeding": {
+        "name": "Od ostatniego karmienia"
+      },
+      "milk_today": {
+        "name": "Mleko dziś"
+      },
+      "feedings_today": {
+        "name": "Karmienia dziś"
+      },
+      "last_ibuprofen": {
+        "name": "Ostatni ibuprofen"
+      },
+      "last_paracetamol": {
+        "name": "Ostatni paracetamol"
+      },
+      "weight": {
+        "name": "Waga"
+      }
+    }
+  }
+}
