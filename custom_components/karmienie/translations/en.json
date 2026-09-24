@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Baby Feeding",
-        "description": "Sign in with the dedicated Firebase account created for Home Assistant (email/password). The account needs users/{uid}: allowed = true and appVersion ≥ minVersionCode.",
+        "description": "Sign in with the dedicated Firebase account created for Home Assistant (email/password). The account needs users/<uid>: allowed = true and appVersion ≥ minVersionCode.",
         "data": {
           "email": "Email",
           "password": "Password",
@@ -21,7 +21,7 @@
     },
     "error": {
       "invalid_auth": "Invalid email or password (or email/password sign-in is disabled in Firebase).",
-      "no_access": "Signed in, but database rules denied access to /feedings. Set users/{uid}/allowed = true and appVersion.",
+      "no_access": "Signed in, but database rules denied access to /feedings. Set users/<uid>/allowed = true and appVersion.",
       "cannot_connect": "Cannot connect to Firebase."
     },
     "abort": {

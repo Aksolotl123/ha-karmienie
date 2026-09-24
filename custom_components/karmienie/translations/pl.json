@@ -3,7 +3,7 @@
     "step": {
       "user": {
         "title": "Karmienie Dziecka",
-        "description": "Zaloguj się osobnym kontem Firebase utworzonym dla Home Assistant (e-mail/hasło). Konto musi mieć w bazie users/{uid}: allowed = true i appVersion ≥ minVersionCode.",
+        "description": "Zaloguj się osobnym kontem Firebase utworzonym dla Home Assistant (e-mail/hasło). Konto musi mieć w bazie users/<uid>: allowed = true i appVersion ≥ minVersionCode.",
         "data": {
           "email": "E-mail",
           "password": "Hasło",
@@ -21,7 +21,7 @@
     },
     "error": {
       "invalid_auth": "Nieprawidłowy e-mail lub hasło (albo logowanie e-mail/hasło jest wyłączone w Firebase).",
-      "no_access": "Zalogowano, ale reguły bazy odmówiły dostępu do /feedings. Ustaw users/{uid}/allowed = true i appVersion.",
+      "no_access": "Zalogowano, ale reguły bazy odmówiły dostępu do /feedings. Ustaw users/<uid>/allowed = true i appVersion.",
       "cannot_connect": "Nie można połączyć się z Firebase."
     },
     "abort": {
