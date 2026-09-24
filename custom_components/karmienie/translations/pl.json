@@ -42,7 +42,11 @@
   "entity": {
     "binary_sensor": {
       "feeding_due": {
-        "name": "Trzeba nakarmić"
+        "name": "Trzeba nakarmić",
+        "state": {
+          "on": "Tak",
+          "off": "Nie"
+        }
       },
       "connection": {
         "name": "Połączenie z Firebase"

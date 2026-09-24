@@ -42,7 +42,11 @@
   "entity": {
     "binary_sensor": {
       "feeding_due": {
-        "name": "Feeding due"
+        "name": "Feeding due",
+        "state": {
+          "on": "Yes",
+          "off": "No"
+        }
       },
       "connection": {
         "name": "Firebase connection"
