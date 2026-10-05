@@ -218,7 +218,13 @@ class FirebaseClient:
         if event in ("put", "patch"):
             try:
                 payload = json.loads(raw)
-            except ValueError:
-                _LOGGER.warning("Nieczytelne zdarzenie RTDB: %.200s", raw)
+            except ValueError as err:
+                # Bez treści — to dane o karmieniu; wystarczy długość i typ błędu.
+                _LOGGER.warning(
+                    "Nieczytelne zdarzenie RTDB %s (%d znaków, %s)",
+                    event,
+                    len(raw),
+                    type(err).__name__,
+                )
                 return
             on_event(event, payload)

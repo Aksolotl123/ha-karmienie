@@ -20,6 +20,7 @@ from .const import (
     CONF_THRESHOLD_HOURS,
     DEFAULT_THRESHOLD_HOURS,
     DOMAIN,
+    is_valid_database_url,
 )
 from .firebase import FirebaseAccessDenied, FirebaseAuthError, FirebaseClient, FirebaseError
 
@@ -52,7 +53,15 @@ class KarmienieConfigFlow(ConfigFlow, domain=DOMAIN):
     async def async_step_user(self, user_input: dict[str, Any] | None = None) -> ConfigFlowResult:
         errors: dict[str, str] = {}
         if user_input is not None:
-            uid, errors = await self._validate(user_input)
+            user_input = {
+                **user_input,
+                CONF_DATABASE_URL: str(user_input[CONF_DATABASE_URL]).strip(),
+            }
+            # Najpierw adres — przy złym nie wysyłamy nigdzie hasła ani tokenu.
+            if not is_valid_database_url(user_input[CONF_DATABASE_URL]):
+                errors = {CONF_DATABASE_URL: "invalid_database_url"}
+            else:
+                uid, errors = await self._validate(user_input)
             if not errors:
                 await self.async_set_unique_id(uid)
                 self._abort_if_unique_id_configured()

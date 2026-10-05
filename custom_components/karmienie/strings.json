@@ -22,7 +22,8 @@
     "error": {
       "invalid_auth": "Invalid email or password (or email/password sign-in is disabled in Firebase).",
       "no_access": "Signed in, but database rules denied access to /feedings. Set users/<uid>/allowed = true and appVersion.",
-      "cannot_connect": "Cannot connect to Firebase."
+      "cannot_connect": "Cannot connect to Firebase.",
+      "invalid_database_url": "Only a Firebase Realtime Database address is accepted: https://… ending with .firebaseio.com or .firebasedatabase.app, without a path."
     },
     "abort": {
       "already_configured": "This account is already configured.",

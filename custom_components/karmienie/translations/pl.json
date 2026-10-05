@@ -22,7 +22,8 @@
     "error": {
       "invalid_auth": "Nieprawidłowy e-mail lub hasło (albo logowanie e-mail/hasło jest wyłączone w Firebase).",
       "no_access": "Zalogowano, ale reguły bazy odmówiły dostępu do /feedings. Ustaw users/<uid>/allowed = true i appVersion.",
-      "cannot_connect": "Nie można połączyć się z Firebase."
+      "cannot_connect": "Nie można połączyć się z Firebase.",
+      "invalid_database_url": "Dozwolony jest tylko adres Firebase Realtime Database: https://… kończący się na .firebaseio.com lub .firebasedatabase.app, bez ścieżki."
     },
     "abort": {
       "already_configured": "To konto jest już skonfigurowane.",
