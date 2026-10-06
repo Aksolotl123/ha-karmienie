@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from datetime import timedelta
+import re
 from urllib.parse import urlsplit
 
 DOMAIN = "karmienie"
@@ -15,18 +16,28 @@ CONF_THRESHOLD_HOURS = "threshold_hours"
 # Firebase RTDB, żeby nie wysłać go pod dowolny wpisany adres.
 DATABASE_URL_SUFFIXES = (".firebaseio.com", ".firebasedatabase.app")
 
+# Host złożony wyłącznie ze zwykłych znaków nazwy DNS, bez pustych etykiet.
+# urlsplit zostawia w hoście m.in. backslash i znaki spoza ASCII (np. pełnej
+# szerokości), więc samo endswith() nie gwarantuje, że host jest tym, czym wygląda.
+_HOST_PATTERN = re.compile(r"[a-z0-9-]+(?:\.[a-z0-9-]+)+")
+
 
 def is_valid_database_url(url: str) -> bool:
     """Czy adres wygląda na bazę Firebase RTDB (https, domena Firebase, bez ścieżki)."""
+    text = str(url).strip()
     try:
-        parts = urlsplit(str(url).strip())
+        parts = urlsplit(text)
         host = (parts.hostname or "").lower()
         port = parts.port
     except ValueError:
         return False
     return (
         parts.scheme == "https"
+        and _HOST_PATTERN.fullmatch(host) is not None
         and host.endswith(DATABASE_URL_SUFFIXES)
+        # pusty "?"/"#" na końcu przeszedłby jako brak query/fragmentu,
+        # a potem psuł adres /feedings.json
+        and not text.endswith(("?", "#"))
         and port in (None, 443)
         and parts.username is None
         and parts.password is None

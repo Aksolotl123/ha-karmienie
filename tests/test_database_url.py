@@ -49,6 +49,22 @@ def test_poprawne_adresy(url):
         "https://przyklad.firebaseio.com/?auth=x",
         "https://przyklad.firebaseio.com/#x",
         "https://przyklad.firebaseio.com:abc",
+        # backslash zostaje w hoście po urlsplit
+        "https://zly.example\\przyklad.firebaseio.com",
+        "https://zly.example\\.firebaseio.com",
+        # znaki pełnej szerokości i inne spoza ASCII
+        "https://ｐｒｚｙｋｌａｄ.firebaseio.com",
+        "https://przyklad．firebaseio．com",
+        "https://przykład.firebaseio.com",
+        # puste etykiety
+        "https://.firebaseio.com",
+        "https://przyklad..firebaseio.com",
+        # biały znak w hoście
+        "https://prz yklad.firebaseio.com",
+        # pusty query/fragment na końcu
+        "https://przyklad.firebaseio.com/?",
+        "https://przyklad.firebaseio.com/#",
+        "https://przyklad.firebaseio.com?",
     ],
 )
 def test_odrzucone_adresy(url):
